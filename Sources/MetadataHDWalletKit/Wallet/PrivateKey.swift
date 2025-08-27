@@ -321,7 +321,7 @@ extension PrivateKey {
 
         let checksum = Array(decoded.bytes[78..<82])
         let bytes = Array(decoded.bytes[0..<78])
-        let hash = Data(bytes).doubleSHA256.prefix(4).bytes
+        let hash: [UInt8] = Data(bytes).doubleSHA256.prefix(4).bytes
 
         guard hash[0..<4] == checksum[0..<4] else {
             return .failure(.decodingError)
